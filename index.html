@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h2 style="text-align: center;">
+        call(), apply() and bind() Methods in JavaScript.
+    </h2>
+
+    <h4>
+        Basic rules worth remembering:
+    </h4>
+        <ul>
+            <li>
+                “this” always refers to an object.
+
+            </li>
+            <li>
+                “this” refers to an object which calls the function it contains.
+            </li>
+            <li>
+                In the global context “this” refers to either window object or is undefined if the ‘strict mode’ is used.
+            </li>
+        </ul>
+    
+    <h3>
+        The bind() Method
+    </h3>
+    <P>
+        bind() was added as part of ECMAScript 5.
+    </P>
+    <p>
+        var car = { 
+            registrationNumber: "GA12345", <br>
+            brand: "Toyota",<br>
+        
+            displayDetails: function(ownerName){<br>
+                console.log(ownerName + ", this is your car: " + this.registrationNumber + " " + this.brand);<br>
+            } <br>
+        } <br>
+    </p>
+    <p>
+        The bind() method creates a new function where “this” refers to the parameter in the parenthesis in the above case “car”. This way the bind() method enables calling a function with a specified “this” value.
+    </p>
+    <p>What if we would like to pass a parameter to the displayDetails function? <br>
+         We can use the bind method again. The following argument of the bind() method will provide an argument to the function bind() is called on.</p>
+    <p>
+        <h5>Example of passing arguments with bind():        </h5>
+
+        var myCarDetails = car.displayDetails.bind(car, "Vivian"); // Vivian, this is your car: GA12345 Toyota
+    </p>
+    
+    <h3>call() and apply() methods
+    </h3>
+    <p>call() and apply() were introduced in ECMAScript 3</p>
+    <p>
+        Similar but slightly different usage provide the call() and apply() methods which also belong to the Function.prototype property.
+
+    </p>
+    <p>This time there is a car object without the displayDetails function, which is located in the global context.
+
+    </p>
+    <p>var car = { <br>
+        registrationNumber: "GA12345", <br>
+        brand: "Toyota" <br>
+    } <br>
+    <br>
+    
+    function displayDetails(ownerName) { <br>
+        console.log(ownerName + ", this is your car: " + this.registrationNumber + " " + this.brand); <br>
+    }</p>
+
+    <p><h5>We can use the apply() function:
+    </h5>
+    </p>
+    <p>displayDetails.apply(car, ["Vivian"]); // Vivian, this is your car: GA12345 Toyota
+    </p>
+    <p><h5>Or call() function:</h5>
+
+    </p>
+    <p>displayDetails.call(car, "Vivian"); // Vivian, this is your car: GA12345 Toyota
+    </p>
+    <p> <span>*</span> Note that when using the apply() function the parameter must be placed in an array. Call() accepts both an array of parameters and a parameter itself. Both are great tools for borrowing functions in JavaScript.
+
+    </p>
+    
+</body>
+</html>
